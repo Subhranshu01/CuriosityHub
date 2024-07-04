@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="home.css">
+   
+</head>
+<body>
+    <div class="home-container">
+        <header>
+            <div class="user-profile">
+                <img src="<%= userdata.dp%>" alt="User Photo" class="profile-photo-small">
+                
+                <span class="user-name-small"><a href="/profile" class="logout-link" style="color: aqua;"><%=userdata.user_name%></a></span>
+                
+                <a href="/logout" class="logout-link" id="logout">Logout</a>
+            </div>
+        </header>
+        <main>
+            <section class="create-post">
+                <h2>👋Hii <%= userdata.name%> Create a Post from here....</h2>
+                <form id="postForm" method="post" action="/post">
+                    <textarea id="postTitle" rows="4" cols="50" placeholder="Post Title" required name="title"></textarea>
+                    <textarea id="postContent" rows="4" cols="50" placeholder="What's on your mind?" required name="content"></textarea>
+                    <button type="submit" id="cpbtn">Post</button>
+                </form>
+            </section>
+            <section class="feed">
+                <h2>Recent Posts 📝</h2>
+               <% postdata.reverse().forEach((post)=>{ %>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <img src="<%=post.user.dp%>" alt="User Photo" class="profile-photo">
+                        <span class="post-author" > <a href="profile/<%=post.user._id%>" class="nav-link">@<%= post.user.user_name %></a></span>
+                    </div>
+                   <div class="line"></div>
+                   <div class="posttitlenadcontent">
+                    <h3 class="post-title"><%= post.title%></h3>
+                    <p class="post-content"><%= post.content%></p>
+
+                   </div>
+                    
+                    
+                    <div class="post-likes" >
+                        <div class="like-button"><a href="/likes/<%= post._id%>">
+                            <%if(post.likes.indexOf(userdata._id)===-1) {%>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 3 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    <%} else {%>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 3 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" style="fill: blue"/>
+                        </svg>
+                    <%}%>
+                    </a>
+                            
+                        </div>
+                        <div class="like-count"><a href="/post/wholiked/<%=post.id%>" class="logout-link" style="color: aqua;"><%=post.likes.length%></a></div>
+                    </div>
+                </div>
+
+              <%  }) %>
+                
+
+
+                
+
+                
+                <!-- Add more posts as needed -->
+            </section>
+        </main>
+    </div>
+    <script>
+        //   document.querySelectorAll('.like-button').forEach(button => {
+        //     button.addEventListener('click', function() {
+        //         const likeCount = this.nextElementSibling;
+        //         let count = parseInt(likeCount.textContent);
+        //         const svg = this.querySelector('svg');
+
+        //         if (this.classList.contains('liked')) {
+        //             this.classList.remove('liked');
+        //             count--;
+        //             svg.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>'; // Unliked SVG
+        //         } else {
+        //             this.classList.add('liked');
+        //             count++;
+        //             svg.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" style="fill: blue"/>'; // Liked SVG with blue fill
+        //         }
+
+        //         likeCount.textContent = count;
+
+        //         // Redirect to specific route
+        //         window.location.href = `/your-specific-route/${this.classList.contains('liked') ? 'liked' : 'unliked'}`;
+        //     });
+        // });
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to CuriosityHub to explore more.">
+    <title>CuriosityHub</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .inputform {
+            background-image: url("https://img.freepik.com/free-vector/geometric-gradient-futuristic-background_23-2149116406.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 10px;
+            width: 30vw;
+            max-width: 400px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        #submit {
+            border-radius: 10px;
+            background-color: rgb(43, 43, 222);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        input {
+            padding: 8px;
+            background: transparent;
+            border: 1px solid rgb(146, 130, 130);
+            color: white;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h2 {
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background: transparent;
+        }
+        input::placeholder {
+            color: rgb(209, 190, 190);
+        }
+        label {
+            font-size: 0.9em;
+        }
+        .create-account {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .create-account a {
+            color: rgb(43, 43, 222);
+            text-decoration: none;
+        }
+        .create-account a:hover {
+            text-decoration: underline;
+        }
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="inputform">
+        <form action="/login" method="post">
+            <h2>Login from here</h2>
+            <label for="user_name">Username</label>
+            <input type="text" id="user_name" name="user_name" required placeholder="Enter your username">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <span class="toggle-password" onclick="togglePasswordVisibility()">🙈</span>
+            </div>
+            <input type="submit" value="Login" id="submit">
+            <div class="create-account">
+                <p>Don't have an account? <a href="/register">Create Account</a></p>
+            </div>
+        </form>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.textContent = '🙈';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c; /* Dark background */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #e0e0e0; /* Light text color for contrast */
+        }
+
+        .profile-container {
+            background-color: #333; /* Dark container background */
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
+            width: 100vw;
+           
+            padding: 20px;
+            text-align: center;
+            overflow-y: auto; /* Enable scrolling for overflow content */
+            height: 100vh; /* Prevent container from exceeding viewport height */
+            position: relative;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e0e0e0; /* Border for better visibility */
+        }
+
+        .user-name {
+            margin: 20px 0 10px;
+            font-size: 24px;
+            color: #e0e0e0; /* Light text color for contrast */
+        }
+
+        .profile-details p {
+            margin: 10px 0;
+            color: #e0e0e0; /* Light text color for contrast */
+            font-size: 16px;
+        }
+
+        .profile-details p strong {
+            color: #ffffff; /* Stronger white for labels */
+        }
+
+        .profile-posts {
+            margin-top: 20px;
+            text-align: left; /* Align text to the left for better readability */
+        }
+
+        .profile-posts h2 {
+            color: #e0e0e0; /* Light text color for contrast */
+            border-bottom: 1px solid #555; /* Bottom border for separation */
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .post {
+            background-color: #7b7373; /* Slightly lighter dark background for posts */
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .post-title {
+            margin: 0 0 5px;
+            font-size: 18px;
+            color: #ffffff; /* Stronger white for post titles */
+            max-width: 70vw;
+        }
+
+        .post-content {
+            margin: 0;
+            font-size: 14px;
+            color: #e0e0e0; /* Light text color for contrast */
+            max-width: 70vw;
+            text-align: justify;
+        }
+
+        .post .right {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            color: greenyellow;
+            text-decoration: none;
+            font-size: 16px;
+            background-color: #444;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-home:hover {
+            background-color: #555;
+        }
+        .right a{
+            color: greenyellow;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #444;
+            height: fit-content;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .right a:hover{
+            background-color: #201f1f;
+        }
+        #delpost:hover{
+            box-shadow: 1px 2px red;
+        }
+        #edpost:hover{
+            box-shadow: 1px 2px yellowgreen;
+        }
+        @media (max-width: 600px) {
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .user-name {
+                font-size: 20px;
+            }
+
+            .profile-details p {
+                font-size: 14px;
+            }
+
+            .post-title {
+                font-size: 16px;
+            }
+
+            .post-content {
+                font-size: 12px;
+            }
+
+            .back-to-home {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <a href="/" class="back-to-home">Back to Home</a>
+        <div class="profile-header">
+            <img src= "<%= userdata.dp%>" alt="User Photo" class="profile-photo">
+            <% if(userdata.dp==="defaultdp.jpg"){ %>
+                <div ><a href="uploaddp" style="color: greenyellow;">sethere</a></div>
+           <% } %>
+            
+            <h1 class="user-name"><%= userdata.user_name %></h1>
+        </div>
+        <div class="profile-details">
+            <p><strong>Email:</strong> <%= userdata.email %></p>
+            <p><strong>Phone:</strong>
+                <% if (userdata.phone) { %>
+                    <%= userdata.phone %>
+                <% } else { %>
+                    <a href="/setphone" style="color: greenyellow;">set here</a>
+                <% } %>
+            </p>
+            <p><strong>Bio:</strong>
+                <% if (userdata.Bio) { %>
+                    <%= userdata.Bio %>
+                <% } else { %>
+                    <a href="/editbio" style="color: greenyellow;">set here</a>
+                <% } %>
+            </p>
+        </div>
+        <div class="profile-posts">
+            <h2>User Posts</h2>
+            <% if (userdata.post.length) { %>
+                <!-- Your content when there are posts -->
+                <% userdata.post.reverse().forEach((post)=>{ %>
+                    <div class="post">
+                        <div class="left">
+                            <h3 class="post-title"><%=post.title%></h3>
+                            <p class="post-content"><%=post.content%></p>
+                        </div>
+                        <div class="right">
+                            <a href="/editpost/<%= post._id %>" id="edpost" style="color:greenyellow;">edit</a>
+                            <a href="/del/<%=post._id%>" id="delpost" style="color: rgb(249, 0, 0);">delete</a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h3>no post yet</h3>
+            <% } %>
+            
+            
+            
+            <!-- Add more posts as needed -->
+        </div>
+    </div>
+</body>
+</html>

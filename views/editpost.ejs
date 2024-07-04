@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .create-post {
+    margin-bottom: 20px;
+    
+}
+#postForm{
+display: flex;
+gap: 10px;
+
+flex-direction: column;
+width: 60vw;
+margin: auto;
+}
+.create-post h2 {
+    color: black; /* Light text color for contrast */
+    border-bottom: 1px solid #555; /* Bottom border for separation */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#create-post textarea {
+   /* Adjust width to be consistent including padding and border */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    
+}
+
+/* #create-post button {
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: #fff;
+    cursor: pointer;
+    
+} */
+
+#create-post button:hover {
+    background-color: red;
+}
+#cpbtn{
+    width: 15em;
+    padding: 10px;
+    align-self: center;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+#cpbtn:hover{
+    box-shadow: 1px 2px rgb(226, 237, 209);
+    background-color: lightgreen;
+}
+    </style>
+</head>
+<body>
+    <section class="create-post">
+        <h2>Edit your post....</h2>
+        <form id="postForm" method="post" action="/editpost/<%=postdata._id%>">
+            <textarea id="postTitle" rows="4" cols="50" placeholder="Post Title" required name="title"><%=postdata.title%></textarea>
+            <textarea id="postContent" rows="4" cols="50" placeholder="What's on your mind?" required name="content"><%=postdata.content%></textarea>
+            <button type="submit" id="cpbtn">Update</button>
+        </form>
+    </section>
+</body>
+</html>

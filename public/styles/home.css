@@ -1,0 +1,224 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e0e0e0; /* Light text color for contrast */
+}
+
+.home-container {
+    background-color: #333; 
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Slightly darker shadow */
+    width: 100vw;
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto; /* Enable scrolling for overflow content */
+    height: 100vh; /* Prevent container from exceeding viewport height */
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo-small {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0; /* Border for better visibility */
+    margin-right: 10px;
+}
+
+.user-name-small {
+    font-size: 18px;
+    color: #e0e0e0; /* Light text color for contrast */
+    margin-right: 10px;
+}
+
+.nav-link {
+     /* Light blue for links */
+     color: rgb(32, 197, 197);
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.logout-link {
+    color: #ff4c4c; /* Red for logout link */
+    text-decoration: none;
+    
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+.create-post {
+    margin-bottom: 20px;
+    
+}
+#postForm{
+display: flex;
+gap: 10px;
+
+flex-direction: column;
+width: 60vw;
+margin: auto;
+}
+.create-post h2 {
+    color: #e0e0e0; /* Light text color for contrast */
+    border-bottom: 1px solid #555; /* Bottom border for separation */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#create-post textarea {
+   /* Adjust width to be consistent including padding and border */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    
+}
+
+/* #create-post button {
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1e90ff;
+    color: #fff;
+    cursor: pointer;
+    
+} */
+
+#create-post button:hover {
+    background-color: red;
+}
+#cpbtn{
+    width: 15em;
+    padding: 10px;
+    align-self: center;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+#cpbtn:hover{
+    box-shadow: 1px 2px rgb(226, 237, 209);
+    background-color: lightgreen;
+}
+.feed {
+    text-align: left; /* Align text to the left for better readability */
+}
+
+.feed h2 {
+    color: #e0e0e0; /* Light text color for contrast */
+    border-bottom: 1px solid #555; /* Bottom border for separation */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.post {
+    background-color: #444;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+    margin: 15px 60px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-author {
+    font-size: 1.2em;
+    color: #fff;
+    
+}
+
+.post-title {
+    color: #fff;
+    margin: 8px;
+    margin-bottom: 5px;
+   
+}
+
+.post-content {
+    color: #ddd;
+    margin: 8px;
+    
+}
+
+ .post-likes {
+    display: flex;
+    gap: 10px;
+    font-size: 20px;
+   margin-top: 10px;
+} 
+
+.like-count {
+    font-size: 1em;
+    color: #fff;
+    margin-right: 5px;
+   
+}
+
+.like-button {
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+    color: inherit; /* Use inherit to avoid overriding */
+}
+
+.like-button:hover {
+    transform: scale(1.5);
+}
+
+#logout{
+   
+   
+    color: red;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #444;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+#logout:hover{
+    box-shadow: 1px 2px red;
+}
+.line{
+    height: 1px;
+    width: auto;
+    background-color:  #8f8484;
+}
+.posttitlenadcontent{
+    background-color:  #333;
+    padding: 5px;
+}
